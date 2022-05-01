@@ -4,15 +4,18 @@ const Mongoose = require('mongoose')
 const express = require('express')
 const bcrypt = require('bcrypt')
 
-const signupUser = (req,res)=>{
+const signupUser = async (req,res)=>{
     const{ name, username, password } = req.body;
-    User.find({
+    await User.findOne({
         username: username
     },async (err, prev)=>{
         if(err){
-            res.send(err);
+            res.send({
+                success: "false",
+                message: "an error occured"
+            })
         }
-        else if(prev.length>0){
+        else if(prev){
             res.send({
                 success: "false",
                 message: "username is already taken"
@@ -22,17 +25,15 @@ const signupUser = (req,res)=>{
             const newUser = new User();
             newUser.name = name;
             newUser.username = username;
-            //newUser.password = newUser.generateHash(password);
             const salt = await bcrypt.genSalt(10);
             newUser.password = await bcrypt.hash(password, salt);
-            //console.log(newUser.name+" : "+newUser.username+" : "+newUser.password);
-            newUser.save().then(data => {
-                res.status(200).json(data);
-            }).catch(error => {
-                res.send("errrrr")
+            await newUser.save();
+            res.send({
+                success: "true",
+                message: "registered successfully"
             })
         }
-    })
+    }).clone().catch(function(err){ console.log(err)})
 }
 
 const loginUser = async (req, res) => {
@@ -41,9 +42,12 @@ const loginUser = async (req, res) => {
         username: username
     },async function(err, prev){
         if(err){
-            res.send(err);
+            res.send({
+                success: "false",
+                message: "an error occured"
+            })
         }
-        else if(prev.length==0){
+        else if(!prev){
             res.send({
                 success: "false",
                 message: "invalid username"
