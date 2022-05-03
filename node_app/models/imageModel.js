@@ -5,15 +5,18 @@ const imageSchema = Mongoose.Schema({
         type: String,
         default: ""
     },
-    username: {
+    desc: {
         type: String,
         default: ""
     },
-    image:
+    img:
     {
         data: Buffer,
-        contentType: String
+        contentType: {
+            type: String,
+            default: 'image/png'
+        }
     }
-});
+}); 
 
-module.exports = Mongoose.model('Images',imageSchema);
+module.exports = Mongoose.model('Image',imageSchema);

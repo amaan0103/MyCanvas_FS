@@ -1,5 +1,5 @@
 import React  from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./home.css";
 function Home() {
     const name = localStorage.getItem("user");
@@ -28,14 +28,14 @@ function Home() {
             <div className="container">
                 <div className="row">
                     <div className="adjust col-xs-4">
-                        <a href="app.html">
+                        <Link to="/canvas">
                             <div className="item">
                                 {/* <div className="new image">
                                     <img src="pic.jpg"></img>
                                 </div> */}
                                 <div className="name"> new drawing </div>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     <div className="adjust col-xs-4">
                         <div className="item">

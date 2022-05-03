@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { signupUser, loginUser, getImages } = require('../controllers/controllers')
+const imgModel = require('../models/imageModel');
 
 router.post('/signup', signupUser);
 router.post('/login',loginUser);
@@ -11,4 +12,5 @@ router.get('/test',(req,res)=>{
         message: "started"
     })
 })
+
 module.exports = router;
