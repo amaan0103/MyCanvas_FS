@@ -5,7 +5,7 @@ const imageSchema = Mongoose.Schema({
         type: String,
         default: ""
     },
-    desc: {
+    username: {
         type: String,
         default: ""
     },

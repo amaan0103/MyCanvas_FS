@@ -19,64 +19,43 @@ app.use(bodyParser.json())
 // Set EJS as templating engine 
 app.set("view engine", "ejs");
 
-var multer = require('multer');
+// var multer = require('multer');
   
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-});
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + '-' + Date.now())
+//     }
+// });
   
-var upload = multer({ storage: storage });
-app.delete('/', async(req,res) => {
-    const temp = await imgModel.deleteMany({});
-    res.send(temp);
-})
-app.get('/', async (req, res) => {
-    const items = await imgModel.find({});
-    res.render('imagesPage',{items : items});
-    //res.send(temp);
-//   imgModel.find({}, (err, items) => {
-//       if (err) {
-//           console.log(err);
-//           res.status(500).send('An error occurred', err);
-//       }
-//       else {
-//           //console.log(items);
-//           //res.render('imagesPage', { items: items });
-//       } 
-//   });
-});
-app.post('/', upload.single('image'), async (req, res, next) => {
+// var upload = multer({ storage: storage });
+// app.delete('/', async(req,res) => {
+//     const temp = await imgModel.deleteMany({});
+//     res.send(temp);
+// })
+// app.get('/', async (req, res) => {
+//     const items = await imgModel.find({});
+//     res.render('imagesPage',{items : items});
+// });
+// app.post('/', upload.single('image'), async (req, res, next) => {
  
-  var obj = {
-      name: req.body.name,
-      desc: req.body.desc,
-      img: {
-          data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-          contentType: 'image/png'
-      }
-  }
-  let im = new imgModel();
-  im.name = obj.name;
-  im.desc = obj.desc;
-  im.img = obj.img;
-  const temp = await im.save();
-  res.redirect('/');
-  //res.send(temp);
-//   imgModel.create(obj, (err, item) => {
-//       if (err) {
-//           console.log(err);
+//   var obj = {
+//       name: req.body.name,
+//       username: req.body.username,
+//       img: {
+//           data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+//           contentType: 'image/png'
 //       }
-//       else {
-//           //item.save();
-//           res.redirect('/');
-//       }
-//   });
-});
+//   }
+//   let im = new imgModel();
+//   im.name = obj.name;
+//   im.username = obj.username;
+//   im.img = obj.img;
+//   const temp = await im.save();
+//   //res.redirect('/');
+// });
 app.use(express.json())
 //app.use(cors)
 app.use(function(req, res, next) {
@@ -84,6 +63,9 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+
+app.use(express.static(path.join(__dirname, '../drawing_app')));
+
 app.use('',routes)
 
 app.listen(5000, () => console.log("server running"))

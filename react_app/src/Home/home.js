@@ -28,7 +28,7 @@ function Home() {
             <div className="container">
                 <div className="row">
                     <div className="adjust col-xs-4">
-                        <Link to="/canvas">
+                        <Link to="/draw">
                             <div className="item">
                                 {/* <div className="new image">
                                     <img src="pic.jpg"></img>
