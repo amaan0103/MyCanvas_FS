@@ -94,9 +94,12 @@ const getDrawingApp = (req,res) => {
 }*/
 
 const getDrawings = async (req, res) => {
-    const items = await imgModel.find({});
+    //console.log(req.params.username);
+    const username = req.params.username;
+    const items = await imgModel.find({username : username});
     res.render('imagesPage',{items : items});
-    //  res.send(items);
+    //console.log(items);
+    //res.send(items); 
 }
 
 const postDrawing = async (req, res, next) => {

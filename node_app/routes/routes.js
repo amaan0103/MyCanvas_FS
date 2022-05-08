@@ -30,7 +30,7 @@ router.delete('/deleteAll', async(req,res) => {
 router.post('/signup', signupUser);
 router.post('/login',loginUser);
 router.post('/postDrawing',upload.single('image'),postDrawing);
-router.get('/getDrawings',getDrawings);
+router.get('/getDrawings/:username',getDrawings);
 //router.get('/home',getImages);
 //router.get('/draw',getDrawingApp);
 // router.get('/test',(req,res)=>{

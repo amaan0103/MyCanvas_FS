@@ -27,10 +27,10 @@ function Login() {
                 console.log(res.data.message);
             }
             else{
-                console.log("haha "+localStorage.getItem("user"));
+                //console.log("haha "+localStorage.getItem("user"));
                 //localStorage.removeItem("user");
                 localStorage.setItem("user",formValues.username);
-                console.log("here "+ res.data.success);
+                //console.log("here "+ res.data.success);
                 setError("");
                 let path = "/home";
                 navigate(path);
