@@ -6,7 +6,8 @@ const { signupUser,
         //getImages, 
         //getDrawingApp,
         getDrawings,
-        postDrawing
+        postDrawing,
+        launchApp
 } = require('../controllers/controllers')
 const imgModel = require('../models/imageModel');
 var multer = require('multer');
@@ -30,7 +31,10 @@ router.delete('/deleteAll', async(req,res) => {
 router.post('/signup', signupUser);
 router.post('/login',loginUser);
 router.post('/postDrawing',upload.single('image'),postDrawing);
+router.post('/save',postDrawing);
 router.get('/getDrawings/:username',getDrawings);
+router.get('/launchApp/:username',launchApp);
+
 //router.get('/home',getImages);
 //router.get('/draw',getDrawingApp);
 // router.get('/test',(req,res)=>{

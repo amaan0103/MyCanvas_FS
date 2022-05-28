@@ -17,7 +17,7 @@ function App() {
         <Route exact path="/draw" element={<Draw />} />
       </Routes>
     </Router>
-  );
+  ); 
 }
 
 export default App;

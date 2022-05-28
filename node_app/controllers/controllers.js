@@ -82,42 +82,48 @@ const loginUser = async (req, res) => {
         images[data.username] = data;
     });
     res.send(images);
-}
-
-const getDrawingApp = (req,res) => {
-    const readStream = fs.createReadStream("../drawing_app/index.html","utf-8");
-    readStream.on("data",(chunk)=>{
-        res.write(chunk);
-        res.end();
-    })
-     
 }*/
+
+const launchApp = (req,res) => {
+    // const readStream = fs.createReadStream("./drawing_app/index.html","utf-8");
+    // readStream.on("data",(chunk)=>{
+    //     res.write(chunk);
+    //     res.end();
+    // })
+    res.render(__dirname+'/../drawing_app/index',{username : req.params.username});
+}
 
 const getDrawings = async (req, res) => {
     //console.log(req.params.username);
+    // const request = require('request');
     const username = req.params.username;
-    const items = await imgModel.find({username : username});
-    res.render('imagesPage',{items : items});
+    const items = await imgModel.find({username : username });
+    // const items = await imgModel.find({});
+    // for(let i = 0; i>items.length;i++)  console.log(items[i].username,items[i].name);
+    // res.render('imagesPage',{items : items});
     //console.log(items);
-    //res.send(items); 
+    res.send(items); 
 }
 
 const postDrawing = async (req, res, next) => {
+    // console.log("**"+req.file);
     var obj = {
         name: req.body.name,
         username: req.body.username,
         img: {
             data: fs.readFileSync(path.join(__dirname + '/../uploads/' + req.file.filename)),
+            // data: Buffer.from( new Uint8Array(req.body.img) ),
             contentType: 'image/png'
         }
-    }
+    } 
     //console.log(path.join(__dirname + '/../uploads/' + req.file.filename))
     let im = new imgModel();
     im.name = obj.name;
     im.username = obj.username;
     im.img = obj.img;
     const temp = await im.save();
+    // res.send("haha");
     //res.send(temp);
 }
 
-module.exports = { signupUser, loginUser, getDrawings, postDrawing};
+module.exports = { signupUser, loginUser, getDrawings, postDrawing, launchApp};

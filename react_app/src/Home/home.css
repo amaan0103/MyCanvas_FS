@@ -5,13 +5,11 @@
 	padding: 0;
 	text-align: center;
 }
-html{
-    overflow-y: scroll;
-}
 body{
 	/* height: 100vh; */
 	background: #222629;
 	color: #86c232;
+	overflow-y: scroll;
 }
 h1{
 	width: 100%;
@@ -28,6 +26,7 @@ a, a:hover, a:focus, a:active {
 .container{
 	/* margin: 50px 0; */
 	width: 100%;
+	margin: 50px 0;
 	/* overflow: hidden; */
 }
 .col-3{
@@ -82,11 +81,22 @@ a, a:hover, a:focus, a:active {
 /*.container{
 	background: inherit;
 }*/
+.cards{
+	display: flex;
+	/* flex-direction: column; */
+}
+.col-3{
+	width: 25%;
+	padding: 20px;
+}
 .adjust{
 	height: 100%;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	border: 2px solid #93fc00;
+	border-radius: 15px;
 }
 .item{
 	border: 2px solid #86c232;
@@ -109,21 +119,50 @@ a, a:hover, a:focus, a:active {
 	width: 100%;
 	border-radius: 15px 15px 0 0;
 	background: inherit;
+	min-height: 90%;
 	height: 90%;
+	max-height: 90%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 .name{
-	color: #86c232;
-	background: inherit;
-	height: 10%;
+	color: #222629 ;
+	background: #86c232;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	/* margin: 10px 0; */
 	transition: .5s;
 	font-size: 20px;
+	font-weight: bold;
+	border-radius: 0 0 12px 12px;
 }
 .hi{
     border: 0px;
+}
+.image>img {
+	width: 100%;
+	
+	height: 100%;
+}
+.upload{
+	width: 100%;
+	height: 40px;
+	font-size: 20px;
+	color: white;
+	border: none;
+	border-radius:25px;
+	background-color: #61892f;
+	/*box-shadow: 0 4px 8px 0 #808080, 0 6px 20px 0 #bfbfbf;*/
+	box-shadow: 0 0 7px #fff;
+	transition: .5s;
+	margin: 20px 0;
+	cursor: pointer;
+}
+.upload{
+	box-shadow: none;
+	background-color:#86c232;
 }

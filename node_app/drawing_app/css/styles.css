@@ -1,0 +1,189 @@
+*{
+	box-sizing: border-box;
+	font-family: Helvetica, sans-serif;
+}
+html{
+	display: flex;
+	flex-direction: column;
+}
+body{
+	margin: 0;
+	padding: 0;
+	max-height: 100vh;
+}
+.container{
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	height: 10vh;
+	background: #1E5128;
+	align-items: center;
+	justify-content: center;
+}
+.go-right{
+	margin-left: auto;
+}
+.popup{
+	display: none;
+	width:100%;
+	height: 100%;
+	position: absolute;
+	display : flex;
+	backdrop-filter: blur(5px) grayscale(100%);
+	-webkit-backdrop-filter: blur(5px) grayscale(100%);
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	color: white;
+}
+.popup>div{
+	border: 5px solid #48dbfb;
+	border-radius: 10px;
+	width: 70vw;
+	height: 70vh;
+	display: flex;
+	flex-direction: column;
+	background: black;
+	overflow-y: auto;
+}
+.popup>div>* {
+	padding: 10px;
+	padding-top: 0;
+	font-family: 'Courier New', monospace;
+}
+.heading1{
+	text-align:center;
+	color: #48dbfb;
+	text-decoration: underline;
+	font-size: 5vh;
+}
+.heading2{
+	text-align:center;
+	color: white;
+	font-size: 3vh;
+}
+.close{
+	margin-left: auto;
+}
+.close i {
+	padding:10px;
+	color: white;
+}
+#upper-toolbox{
+	position: fixed;
+    top: 0;
+	z-index: 99;
+}
+#downloadLnk{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 100%;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+}
+a:visited{
+	color: inherit;
+}
+#lower-toolbox{
+	position: fixed;
+	bottom: 0;
+	z-index: 99;
+}
+#lower-toolbox div {
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+button, input{
+	width: 12vw;
+	height: 12vw;
+	max-height: 90%;
+	background: white;
+	color: black;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 5px;
+	margin-left: 5px;
+	border: 0;
+	border-radius: 5px;
+	transition: .3s ease-in-out;
+}
+button:hover{
+	background: whitesmoke;
+	box-shadow: 0 5px rgba(0,0,0,0.6);
+	cursor: pointer;
+}
+#mode {
+	width: 16vw;
+	height: 16vw;
+}
+#save{
+	width: 32vw;
+	height: 16vw;
+}
+#mode{
+	background: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 50%;
+}
+canvas{
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #1E5128;
+	z-index: 1;
+}	
+@media (min-width: 768px){
+	button, input{
+		width: 8vh;
+		height: 8vh;
+	}
+	#mode{
+		width: 10vh;
+		height: 10vh;
+	}
+	
+	#save, #color{
+		width: 16vh;
+	}
+	.go-left{
+		margin-left: 10vw;
+	}
+	.go-right{
+		margin-right: 10vw;
+	}
+	.popup>div{
+		width: 30vw;
+		height: 80vh;
+	}
+}
+#saveCanvas{
+	display: none;
+}
+#name{
+	background: inherit;
+	border : 2px solid #48dbfb;
+	border-radius: 10px;
+	color: white;
+	width: 90%;
+	margin: 50px auto;
+}
+
+#name::placeholder{
+	color: white;
+	text-align: center;
+	font-size: medium;
+}
+#submit{
+	width: 50%;
+	background: inherit;
+	border: 2px solid #48dbfb;
+	margin: 50px auto;
+}

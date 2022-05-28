@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const routes = require('./routes/routes')
 const imgModel = require('./models/imageModel')
+const ejs = require('ejs')
 //const cors = require('cors')
 var bodyParser = require('body-parser');
 var fs = require('fs');
@@ -18,44 +19,10 @@ app.use(bodyParser.json())
   
 // Set EJS as templating engine 
 app.set("view engine", "ejs");
+// ejs.delimiter = '/';
+// ejs.openDelimiter = '[';
+// ejs.closeDelimiter = ']';
 
-// var multer = require('multer');
-  
-// var storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'uploads')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.fieldname + '-' + Date.now())
-//     }
-// });
-  
-// var upload = multer({ storage: storage });
-// app.delete('/', async(req,res) => {
-//     const temp = await imgModel.deleteMany({});
-//     res.send(temp);
-// })
-// app.get('/', async (req, res) => {
-//     const items = await imgModel.find({});
-//     res.render('imagesPage',{items : items});
-// });
-// app.post('/', upload.single('image'), async (req, res, next) => {
- 
-//   var obj = {
-//       name: req.body.name,
-//       username: req.body.username,
-//       img: {
-//           data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-//           contentType: 'image/png'
-//       }
-//   }
-//   let im = new imgModel();
-//   im.name = obj.name;
-//   im.username = obj.username;
-//   im.img = obj.img;
-//   const temp = await im.save();
-//   //res.redirect('/');
-// });
 app.use(express.json())
 //app.use(cors)
 app.use(function(req, res, next) {
@@ -64,8 +31,8 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.use(express.static(path.join(__dirname, '../drawing_app')));
-
+app.use(express.static(path.join(__dirname, '/drawing_app')));
+// app.use(express.static('drawing_app'));
 app.use('',routes)
 
 app.listen(5000, () => console.log("server running"))
