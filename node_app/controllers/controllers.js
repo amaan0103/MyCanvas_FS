@@ -1,5 +1,6 @@
 const User = require('../models/registerModel')
 const imgModel = require('../models/imageModel')
+const registerModel = require('../models/registerModel')
 const Mongoose = require('mongoose')
 const express = require('express')
 const bcrypt = require('bcrypt')
@@ -104,7 +105,12 @@ const getDrawings = async (req, res) => {
     //console.log(items);
     res.send(items); 
 }
-
+const getName = async (req, res) => {
+    const username = req.params.username;
+    const {name} = await registerModel.findOne({username : username});
+    // console.log("****"+name);
+    res.send(name);
+}
 const postDrawing = async (req, res, next) => {
     // console.log("**"+req.file);
     var obj = {
@@ -126,4 +132,4 @@ const postDrawing = async (req, res, next) => {
     //res.send(temp);
 }
 
-module.exports = { signupUser, loginUser, getDrawings, postDrawing, launchApp};
+module.exports = { signupUser, loginUser, getDrawings, postDrawing, launchApp, getName};

@@ -40,14 +40,36 @@
 
 // export default Card;
 import React, { useEffect, useState } from "react";
-import CardData from "./CardData";
+import Axios from "axios";
+import Picture from "../Picture/Picture"
+// import Form from "../Form/Form";
+// import CardData from "./CardData";
 
-function Card(){
-    
-    const cards = CardData();
+function Card(props){
+    // let cards = "";
+    const [cards, setCards] = useState([]);
+    const [displayPic, setDisplayPic] = useState(false);
+    useEffect(()=>{
+        getData();
+    },[]);
+    useEffect(()=>{
+        getData();
+    },[props]);
+    async function getData(){
+        const url = `http://localhost:5000/getDrawings/${localStorage.getItem("user")}`;
+        Axios.get(url).then(res=>{
+            setCards(res.data);
+            console.log(res.data.name);
+        });
+    }
+    function enlarge(props){
+        console.log(props+" *** ")
+        setDisplayPic(prev=>!prev);
+    }
+    // const cards = CardData();
     try{const allCards = cards.map( function (data) {
         //let username = data.username;
-        console.log("here!!!");
+        // console.log("here: "+data._id);
         const name = data.name;
 
         const blob = new Blob([Int8Array.from(data.img.data.data)], {type: data.img.contentType });
@@ -55,14 +77,17 @@ function Card(){
         const image = window.URL.createObjectURL(blob);
         //let image = `data:${data.img.contentType};base64,${(data.img.data.data).toString('base64')}`;
         return( 
-            <div className = "col-3">
-                <div className = "adjust">
+            <>
+            {displayPic && <Picture picData={data} displayPic={enlarge}/>}
+            <div className = "col-3 item">
+                <div className = "adjust" onClick={()=>enlarge(data._id)}>
                     <div className="image">
                         <img src={image}></img>
                     </div>
                     <div className="name">{name}</div>
                 </div>
             </div>
+            </>
         );
     })
     return [allCards];}

@@ -7,7 +7,8 @@ const { signupUser,
         //getDrawingApp,
         getDrawings,
         postDrawing,
-        launchApp
+        launchApp,
+        getName
 } = require('../controllers/controllers')
 const imgModel = require('../models/imageModel');
 var multer = require('multer');
@@ -34,6 +35,7 @@ router.post('/postDrawing',upload.single('image'),postDrawing);
 router.post('/save',postDrawing);
 router.get('/getDrawings/:username',getDrawings);
 router.get('/launchApp/:username',launchApp);
+router.get('/getName/:username',getName)
 
 //router.get('/home',getImages);
 //router.get('/draw',getDrawingApp);

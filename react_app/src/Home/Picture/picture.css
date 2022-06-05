@@ -16,7 +16,7 @@
 	z-index: 100;
 	color: white;
 }
-.popup>div{
+#adjust{
 	border: 5px solid #86c232;
 	border-radius: 10px;
 	width: 70vw;
@@ -24,20 +24,22 @@
 	display: flex;
 	flex-direction: column;
 	background: #222629;
-	overflow-y: auto;
 }
-.popup>div>* {
-	padding: 10px;
-	padding-top: 0;
+#navbar{
+    width: 100%;
+    height: 10%;
+}
+#image{
+    width: 100%;
+    height: 90%;
+}
+#image>img{
+    width: 100%;
+    height: 100%;
 }
 .heading1{
 	text-align:center;
 	color: #48dbfb;
 	/* text-decoration: underline; */
 	font-size: 5vh;
-}
-.success{
-	text-align: center;
-	color: #86c232;
-	font-weight: bold;
 }
